@@ -9,6 +9,7 @@
 import requests
 from pprint import pprint
 from lxml import html
+from pymongo import MongoClient
 
 header = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:84.0) Gecko/20100101 Firefox/84.0'}
 news_list = []
@@ -42,7 +43,7 @@ main_url = 'https://lenta.ru'
 response = requests.get(main_url, headers=header)
 dom = html.fromstring(response.text)
 
-links = dom.xpath("//div[contains(@class,'b-yellow-box__wrap')]//a/@href")
+links = dom.xpath("//div[contains(@class,'b-yellow-box__wrap')]//a[not(contains(@class,'b-link-external'))]/@href")
 for link in links:
     news = {}
     url = main_url + link
@@ -80,5 +81,10 @@ for block in news_blocks:
 
     news_list.append(news)
 
+# Запишем в базу
+client = MongoClient('127.0.0.1', 27017)
+db = client['news_db']
+news_db = db.top_news
+news_db.insert_many(news_list)
 
 pprint(news_list)
