@@ -9,7 +9,7 @@ from scrapy import signals
 from itemadapter import is_item, ItemAdapter
 
 
-class BookparserSpiderMiddleware:
+class LeruaSpiderMiddleware:
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the spider middleware does not modify the
     # passed objects.
@@ -56,7 +56,7 @@ class BookparserSpiderMiddleware:
         spider.logger.info('Spider opened: %s' % spider.name)
 
 
-class BookparserDownloaderMiddleware:
+class LeruaDownloaderMiddleware:
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the downloader middleware does not modify the
     # passed objects.
@@ -81,8 +81,6 @@ class BookparserDownloaderMiddleware:
         return None
 
     def process_response(self, request, response, spider):
-
-
         # Called with the response returned from the downloader.
 
         # Must either;

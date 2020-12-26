@@ -1,4 +1,4 @@
-# Scrapy settings for bookparser project
+# Scrapy settings for lerua project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,10 +7,11 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'bookparser'
+BOT_NAME = 'lerua'
+IMAGES_STORE = 'images'
 
-SPIDER_MODULES = ['bookparser.spiders']
-NEWSPIDER_MODULE = 'bookparser.spiders'
+SPIDER_MODULES = ['lerua.spiders']
+NEWSPIDER_MODULE = 'lerua.spiders'
 
 LOG_ENABLED = True
 LOG_LEVEL = 'DEBUG' #ERROR INFO DEBUG
@@ -28,10 +29,10 @@ CONCURRENT_REQUESTS = 16
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 0
+#DOWNLOAD_DELAY = 1
 # The download delay setting will honor only one of:
-# CONCURRENT_REQUESTS_PER_DOMAIN = 16
-# CONCURRENT_REQUESTS_PER_IP = 16
+#CONCURRENT_REQUESTS_PER_DOMAIN = 16
+#CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
 COOKIES_ENABLED = True
@@ -48,13 +49,13 @@ COOKIES_ENABLED = True
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'bookparser.middlewares.BookparserSpiderMiddleware': 543,
+#    'lerua.middlewares.LeruaSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'bookparser.middlewares.BookparserDownloaderMiddleware': 543,
+#    'lerua.middlewares.LeruaDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -66,7 +67,8 @@ COOKIES_ENABLED = True
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'bookparser.pipelines.BookparserPipeline': 300,
+    'lerua.pipelines.LeruaPipeline': 300,
+    'lerua.pipelines.LeruaPhotosPipeline': 200,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
